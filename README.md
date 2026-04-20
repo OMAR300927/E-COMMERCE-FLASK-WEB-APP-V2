@@ -1,4 +1,4 @@
-# 🛒 E-Commerce Flask Web App- V1
+# 🛒 E-Commerce Flask Web App- V2
 A simple full-stack e-commerce system built for learning and production practice.
 
 Socend version of an e-commerce web application built with Flask.
