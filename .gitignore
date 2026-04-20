@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Environment variables (VERY IMPORTANT)
+.env
+
+# Logs
+*.log
+
+# Flask instance folder
+instance/
+
+# IDE files
+.vscode/
+.idea/
+
+# Alembic cache
+migrations/__pycache__/
+
+# uv cache (optional)
+.uv/

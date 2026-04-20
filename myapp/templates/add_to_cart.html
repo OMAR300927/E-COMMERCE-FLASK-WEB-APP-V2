@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Add product to cart{% endblock %}
+
+{% block body %}
+    <h2>{{ product.name }}</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <p>Price: ${{ product.price }}</p>
+    <form method="POST">
+        <input type="number" name="quantity" min="1" value="1" max="{{ product.amount }}" required>
+
+        <button type="submit">Add to Cart</button>
+    </form>
+{% endblock %}

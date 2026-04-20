@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}My cart{% endblock %}
+
+{% block body %}
+        <nav>
+            <a href="{{ url_for('users_bp.home') }}">Home</a>
+            <a href="{{ url_for('users_bp.logout') }}">Logout</a>
+
+            <input type="text" placeholder="Search..." class="search-bar">
+        </nav>
+        <h2>My Cart</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <ul class="cart-list">
+            {% for item in items %}
+                <li>Product Name: {{ item.product.name }}<br>
+                    Product Price: {{ item.product.price }}<br>
+                    Quantity: {{ item.quantity }}<br>
+                    - <img src="{{ item.product.image }}" alt="{{ item.product.name }}" width="100">
+                    <form method="POST" action="{{ url_for('users_bp.remove_from_cart', item_id=item.id) }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                    <form action="{{ url_for('users_bp.create_checkout_session') }}" method="POST">
+                        <button type="submit">Pay Now</button>
+                    </form>
+                </li>
+                
+            {% endfor %}
+        </ul>
+        <script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}

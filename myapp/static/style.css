@@ -1,0 +1,30 @@
+nav {
+    background: black;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 0.5rem 1rem;
+}
+
+nav a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.search {
+    padding: 0.5rem;
+    justify-content: flex-end;
+}
