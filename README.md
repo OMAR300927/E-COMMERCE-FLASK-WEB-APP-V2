@@ -1,7 +1,8 @@
-# 🛒 E-Commerce Flask Web App- V2
+# 🛒 E-Commerce Flask Web App - V2
 A simple full-stack e-commerce system built for learning and production practice.
 
-Socend version of an e-commerce web application built with Flask.
+This is the second version of an e-commerce web application built with Flask.
+In this version, the application has been deployed to the cluster using Kubernetes (minikube).
 The application provides a complete shopping experience, including product management, user interactions, and online payments.
 
 ---
@@ -36,8 +37,8 @@ The application provides a complete shopping experience, including product manag
 ⚙️ Setup
 1. Clone the repository
 
-git clone https://github.com/OMAR300927/E-COMMERCE-FLASK-WEB-APP-V1.git
-cd E-COMMERCE-FLASK-WEB-APP-V1
+git clone https://github.com/OMAR300927/E-COMMERCE-FLASK-WEB-APP-V2.git
+cd E-COMMERCE-FLASK-WEB-APP-V2
 
 2. Install dependencies
 
@@ -57,6 +58,8 @@ FLASK_SECRET_KEY=your_secret_key
 FLASK_JWT_SECRET_KEY=your_jwt_secret_key
 FLASK_STRIPE_PUBLIC_KEY=your_stripe_public_key
 FLASK_STRIPE_SECRET_KEY=your_stripe_secret_key
+FLASK_CLIENT_ID=your_google_client_id
+FLASK_CLIENT_SECRET=your_google_client_secret
 
 4. Run the application
 
@@ -70,17 +73,33 @@ uv run run.py
 * Make sure the database is created (you can use tools like pgAdmin4)
 * Stripe keys are required for payment functionality
 * Admin routes are restricted to authorized users only
+* Google credentials are required for authentication
 
 ---
 
-## The future has been added 
+## Improvements Added
 
-* Add Redis for caching 
-* Add Google authentication 
-* Support product images 
-* Add product search and filtering 
-* Dockerize the application using docker
-* Use Jenkins for CI/CD pipelines and SonarQube for code quality analysis
+* Added Redis for caching
+* Added support for product images
+* Added product search and filtering
+* Dockerized the application using Docker
+* Added Jenkins for CI/CD pipelines and SonarQube for code quality analysis
+* Used Kubernetes to deploy the application
+
+* For the secret file use the following command, you must replace localhost with `postgres-service`, which is defined in postgres.yaml in `FLASK_SQLALCHEMY_DATABASE_URI`.
+```
+kubectl create secret generic app-secrets \
+  --from-literal=POSTGRES_DB=your_db_name \
+  --from-literal=POSTGRES_USER=your_db_username \
+  --from-literal=POSTGRES_PASSWORD=your_db_password \
+  --from-literal=FLASK_SQLALCHEMY_DATABASE_URI=postgresql://your_db_username:your_db_password@postgres-service:5432/your_db_name \
+  --from-literal=FLASK_SECRET_KEY=your_secret_key \
+  --from-literal=FLASK_JWT_SECRET_KEY=your_jwt_secret_key \
+  --from-literal=FLASK_CLIENT_ID=your_google_client_id \
+  --from-literal=FLASK_CLIENT_SECRET=your_google_client_secret \
+  --from-literal=FLASK_STRIPE_PUBLIC_KEY=your_stripe_public_key \
+  --from-literal=FLASK_STRIPE_SECRET_KEY=your_stripe_secret_key
+```
 
 ---
 
