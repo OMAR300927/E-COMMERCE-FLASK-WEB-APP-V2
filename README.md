@@ -74,6 +74,7 @@ uv run run.py
 * Stripe keys are required for payment functionality
 * Admin routes are restricted to authorized users only
 * Google credentials are required for authentication
+* In the K8s folder, Ingress is important for Google authentication, and the migration job is important for connecting to PostgreSQL.
 
 ---
 
