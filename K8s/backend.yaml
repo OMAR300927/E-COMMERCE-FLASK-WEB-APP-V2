@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: omarsa999/e-commerce-app:10
+        image: omarsa999/e-commerce-app:11
         env:
           - name: FLASK_SQLALCHEMY_DATABASE_URI
             valueFrom:
