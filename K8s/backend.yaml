@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+spec:
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-container
+        image: omarsa999/e-commerce-app:10
+        env:
+          - name: FLASK_SQLALCHEMY_DATABASE_URI
+            valueFrom:
+              secretKeyRef:
+                name: flask-secrets
+                key: FLASK_SQLALCHEMY_DATABASE_URI
+          - name: FLASK_JWT_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: flask-secrets
+                key: FLASK_JWT_SECRET_KEY
+          - name: FLASK_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: flask-secrets
+                key: FLASK_SECRET_KEY
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: sqlite-storage
+          mountPath: /data
+      volumes:
+      - name: sqlite-storage
+        persistentVolumeClaim:
+          claimName: sqlite-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+  labels:
+    app: flask-app
+spec:
+  selector:
+    app: flask-app
+  type: NodePort
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 30008
+    protocol: TCP
