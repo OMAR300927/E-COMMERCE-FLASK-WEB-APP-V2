@@ -39,13 +39,6 @@ spec:
             memory: "256Mi"
         ports:
         - containerPort: 8000
-        volumeMounts:
-        - name: sqlite-storage
-          mountPath: /data
-      volumes:
-      - name: sqlite-storage
-        persistentVolumeClaim:
-          claimName: sqlite-pvc
 
 ---
 
