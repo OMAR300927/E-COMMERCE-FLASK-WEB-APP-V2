@@ -18,17 +18,17 @@ spec:
           - name: FLASK_SQLALCHEMY_DATABASE_URI
             valueFrom:
               secretKeyRef:
-                name: flask-secrets
+                name: app-secrets
                 key: FLASK_SQLALCHEMY_DATABASE_URI
           - name: FLASK_JWT_SECRET_KEY
             valueFrom:
               secretKeyRef:
-                name: flask-secrets
+                name: app-secrets
                 key: FLASK_JWT_SECRET_KEY
           - name: FLASK_SECRET_KEY
             valueFrom:
               secretKeyRef:
-                name: flask-secrets
+                name: app-secrets
                 key: FLASK_SECRET_KEY
         resources:
           requests:
