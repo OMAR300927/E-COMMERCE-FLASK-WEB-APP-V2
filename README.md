@@ -85,6 +85,7 @@ uv run run.py
 * Added product search and filtering
 * Dockerized the application using Docker
 * Added Jenkins for CI/CD pipelines and SonarQube for code quality analysis
+* Added Gitleaks and Trivy
 * Used Kubernetes to deploy the application
 
 * For the secret file use the following command, you must replace localhost with `postgres-service`, which is defined in postgres.yaml in `FLASK_SQLALCHEMY_DATABASE_URI`.
