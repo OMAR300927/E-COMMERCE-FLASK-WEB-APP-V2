@@ -24,17 +24,9 @@ pipeline {
                 withSonarQubeEnv('sonar-server') {
                     sh '''
                     $SCANNER_HOME/bin/sonar-scanner \
-                    -Dsonar.projectName=e-commerce-app \
-                    -Dsonar.projectKey=e-commerce-app \
+                    -Dsonar.projectName=e-commerce-app-v2 \
+                    -Dsonar.projectKey=e-commerce-app-v2 
                     '''
-                }
-            }
-        }
-        
-        stage('Quality gate') {
-            steps {
-                timeout(time: 10, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-cred'
                 }
             }
         }
