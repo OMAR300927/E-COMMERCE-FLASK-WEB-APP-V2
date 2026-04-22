@@ -47,20 +47,20 @@ pipeline {
         
         stage('Build & tag the image') {
             steps {
-                sh 'docker build -t $USERNAME/e-commerce-app:$BUILD_NUMBER -f myapp/Dockerfile .'
+                sh 'docker build -t $USERNAME/e-commerce-app:v2.0 -f myapp/Dockerfile .'
             }
         }
         
         stage('Scan the image') {
             steps {
-                sh 'trivy image --timeout 10m --format table -o image-report.html $USERNAME/e-commerce-app:$BUILD_NUMBER'
+                sh 'trivy image --timeout 10m --format table -o image-report.html $USERNAME/e-commerce-app:v2.0'
             }
         }
         
         stage('Push the image') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-cred', url: 'https://index.docker.io/v1/') {
-                    sh 'docker push $USERNAME/e-commerce-app:$BUILD_NUMBER'
+                    sh 'docker push $USERNAME/e-commerce-app:v2.0'
                 }
             }
         }

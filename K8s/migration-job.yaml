@@ -9,7 +9,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: migration
-          image: omarsa999/e-commerce-app:$BUILD_NUMBER
+          image: omarsa999/e-commerce-app:v2.0
           workingDir: /app
           command: ["uv", "run", "flask", "--app", "run:app", "db", "upgrade"]
           envFrom:

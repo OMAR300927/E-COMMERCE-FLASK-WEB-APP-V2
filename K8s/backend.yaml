@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: omarsa999/e-commerce-app:$BUILD_NUMBER
+        image: omarsa999/e-commerce-app:v2.0
         
         envFrom:
           - secretRef:
