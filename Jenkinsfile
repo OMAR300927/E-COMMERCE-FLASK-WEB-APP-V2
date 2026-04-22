@@ -64,5 +64,22 @@ pipeline {
                 }
             }
         }
+
+        stage('Apply Kubernetes manifests') {
+            steps {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh 'kubectl apply -f ./K8s/'
+                    sh 'kubectl rollout status deployment/flask-deployment'
+                }
+            }
+        }
+
+        stage('Verify the Deployment') {
+            steps {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh 'kubectl get pods -o wide'
+                }
+            }
+        }
     }
 }
